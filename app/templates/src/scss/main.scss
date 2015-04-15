@@ -1,0 +1,21 @@
+$guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
+$gs-baseline: 12px;
+$gs-gutter: 20px;
+
+@import '../../bower_components/bourbon/app/assets/stylesheets/_bourbon';
+@import '../../bower_components/sass-mq/_mq';
+@import '../../bower_components/guss-css3/_css3';
+@import '../../bower_components/guss-rem/_rem';
+@import '../../bower_components/guss-grid-system/_grid-system';
+@import '../../bower_components/guss-layout/_row';
+@import '../../bower_components/guss-layout/_columns';
+@import '../../bower_components/guss-typography/_typography';
+@import '../../bower_components/guss-colours/_colours';
+@import '../../bower_components/guss-webfonts/src/_webfonts';
+
+@include guss-webfonts();
+@include guss-typography-defaults;
+
+.interactive {
+	margin: 0;
+}
