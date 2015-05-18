@@ -47,7 +47,7 @@ gulp.task('serve', ['styles'], function () {
 			port: 9001
 		},
 		server: {
-			baseDir: ['.tmp', 'src'],
+			baseDir: ['src'],
 			routes: {
 				'/jspm_packages': 'jspm_packages',
 				'/config.js': 'config.js'
