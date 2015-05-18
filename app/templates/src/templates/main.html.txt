@@ -1,5 +1,0 @@
-<section ng-app="App">
-	<div ng-controller="ExampleController">
-		Hello World
-	</div>
-</section>

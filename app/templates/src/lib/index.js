@@ -1,13 +1,10 @@
-let el = document.querySelector(".interactive");
-el.innerHTML = mainTemplate;
-
-import mainTemplate from '../templates/main.html.txt!text';
-import angular from 'angular';
-import angularMaterial from 'angular-material';
-import register from 'toddmoorega/register'
-import { ExampleController } from './controllers/ExampleController'
+import '../../main.css!';
+import React from 'react';
+import { Cover } from './components/cover/Cover.jsx!';
 
 
+export function boot(el, context, config, mediator){
+    React.render(React.createElement(Cover, {}), el);
+}
 
-angular.module('App', ['ngMaterial']);
-register('App').controller('ExampleController', ExampleController);
+boot(document.querySelector('.interactive'));

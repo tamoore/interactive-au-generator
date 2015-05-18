@@ -14,8 +14,15 @@
 		"tests"
 	],
 	"dependencies": {
-		"guss": "latest",
+		"guss-rem": "~1",
+		"guss-grid-system": "~1",
+		"guss-typography": "~3",
+		"guss-layout": "~1",
+		"guss-css3": "~2",
+		"guss-colours": "~3",
+		"guss-webfonts": "~3",
 		"pasteup-buttons": "latest",
-	  	"bourbon": "latest"
+		"bourbon": "latest",
+		"fontawesome": "~4.3.0"
 	}
 }
