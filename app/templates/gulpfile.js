@@ -1,42 +1,23 @@
 var gulp = require('gulp'),
-	semver = require('semver'),
 	shell = require('gulp-shell'),
 	watch = require('gulp-watch'),
-	bump = require('gulp-bump'),
-	pkg = require('./package.json'),
-	watch = require('gulp-watch'),
 	sass = require('gulp-ruby-sass'),
+	postcss = require('gulp-postcss'),
+	$ = require('gulp-load-plugins')(),
+	browserSync = require('browser-sync'),
+	reload = browserSync.reload,
 	htmlreplace = require('gulp-html-replace');
+
+var spawn = require('child_process').spawn;
+var gutil = require('gulp-util');
 
 gulp.task('styles', function() {
 	return sass('src/scss/main.scss')
 		.on('error', function (err) {
-      		console.error('Error!', err.message);
-   		})
+			console.error('Error', err.message);
+		})
 		.pipe(gulp.dest('src/css'))
-});
-
-gulp.task('deploy-master', function() {
-	var newVer = semver.inc(pkg.version, 'patch');
-	return gulp.src(['./package.json'])
-		.pipe(bump({
-			version: newVer
-		}))
-		.pipe(gulp.dest('./'))
-		.on('end', shell.task([
-			'git add --all',
-			'git commit -m "' + newVer + '"',
-			'git tag -a "' + newVer + '" -m "' + newVer + '"',
-			'git push origin master',
-			'git push origin --tags'
-		]));
-});
-
-gulp.task('deploy', ['build'], function() {
-	return gulp.src(['./'])
-		.on('end', shell.task([
-			'aws s3 sync ./build s3://gdn-cdn/<%= path %>/ --profile interactive --acl public-read --cache-control="max-age=0, no-cache"'
-		]));
+		.pipe(reload({stream: true}));
 });
 
 gulp.task('build', ['styles'], function() {
@@ -58,6 +39,32 @@ gulp.task('build', ['styles'], function() {
 		.pipe(gulp.dest('build/'));
 });
 
-gulp.task('watch', function() {
+gulp.task('serve', ['styles'], function () {
+	browserSync({
+		notify: false,
+		port: 9000,
+		ui: {
+			port: 9001
+		},
+		server: {
+			baseDir: ['.tmp', 'src'],
+			routes: {
+				'/jspm_packages': 'jspm_packages',
+				'/config.js': 'config.js'
+			}
+		}
+	});
+
+	// watch for changes
+	gulp.watch([
+		'src/**/*.txt',
+		'src/*.html',
+		'src/**/*.html',
+		'src/lib/**/*.js',
+		'src/lib/**/*.jsx',
+		'src/images/**/*',
+		'.tmp/scripts/**/*.js',
+	]).on('change', reload);
 	gulp.watch('src/scss/**/*.scss', ['styles']);
 });
+

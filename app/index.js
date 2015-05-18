@@ -20,11 +20,6 @@ module.exports = yeoman.generators.Base.extend({
 
     var prompts = [{
         type: 'input',
-        name: 'githubUserName',
-        message: 'Please eneter you github username?',
-        store   : true
-      },{
-        type: 'input',
         name: 's3Path',
         message: 'Please the s3 path on interactive?',
         store   : true
@@ -41,12 +36,7 @@ module.exports = yeoman.generators.Base.extend({
     app: function () {
       this.copy('gitignore', '.gitignore');
       this.copy('jshintrc', '.jshintrc');
-      this.copy('sauce_labs_capabilities.js', 'sauce_labs_capabilities.js');
-      this.copy('travis.yml', '.travis.yml');
-      this.copy('karma.conf.js', '.karma.conf.js');
-      this.copy('text.js', 'text.js');
       this.directory('src', 'src');
-      this.directory('test', 'test');
 
       var context = { 
         repo: this.appname,
