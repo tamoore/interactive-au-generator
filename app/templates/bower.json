@@ -23,6 +23,7 @@
 		"guss-webfonts": "~3",
 		"pasteup-buttons": "latest",
 		"bourbon": "latest",
+		"neat" : "latest",
 		"fontawesome": "~4.3.0"
 	}
 }

@@ -20,6 +20,13 @@ gulp.task('styles', function() {
 		.pipe(reload({stream: true}));
 });
 
+gulp.task('deploy', ['build'], function() {
+	return gulp.src(['./'])
+		.on('end', shell.task([
+			'aws s3 sync ./build s3://gdn-cdn/<%= path %> --profile interactive --acl public-read --cache-control="max-age=0, no-cache"'
+		]));
+});
+
 gulp.task('build', ['styles'], function() {
 	gulp.src('./')
 		.pipe(shell([
@@ -29,11 +36,14 @@ gulp.task('build', ['styles'], function() {
 			'cp -f ./src/boot.js ./build'
 		]));
 
-	gulp.src('./index.html')
+	gulp.src('./src/index.html')
 		.pipe(htmlreplace({
-			src: 'index.html',
+			src: 'src/index.html',
 			'js': {
 				src: ['build.js']
+			},
+			'css': {
+				src: ['css/main.css']
 			}
 		}))
 		.pipe(gulp.dest('build/'));

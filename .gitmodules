@@ -1,0 +1,3 @@
+[submodule "app/templates/src/scss/frontend-stripped"]
+	path = app/templates/src/scss/frontend-stripped
+	url = ssh://git@stash.labs.theguardian.com:7999/ed/frontend-stripped.git

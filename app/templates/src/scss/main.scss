@@ -2,7 +2,10 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 $gs-baseline: 12px;
 $gs-gutter: 20px;
 
+@import './frontend-stripped/head.content.scss';
+
 @import '../../bower_components/bourbon/app/assets/stylesheets/_bourbon';
+@import '../../bower_components/neat/app/assets/stylesheets/_neat';
 @import '../../bower_components/fontawesome/scss/font-awesome';
 @import '../../bower_components/sass-mq/_mq';
 @import '../../bower_components/guss-css3/_css3';
@@ -13,6 +16,8 @@ $gs-gutter: 20px;
 @import '../../bower_components/guss-typography/_typography';
 @import '../../bower_components/guss-colours/_colours';
 @import '../../bower_components/guss-webfonts/src/_webfonts';
+@import '../../bower_components/pasteup-forms/src/_forms';
+@import '../../bower_components/pasteup-buttons/src/_buttons'
 
 @include guss-webfonts();
 @include guss-typography-defaults;

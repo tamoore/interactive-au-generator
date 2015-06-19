@@ -53,6 +53,5 @@ module.exports = yeoman.generators.Base.extend({
   },
   end: function () {
     this.spawnCommand('jspm', ['install', '-y']);
-    this.spawnCommand('jspm', ['dl-loader','-y', '--babel']);
   }
 });
